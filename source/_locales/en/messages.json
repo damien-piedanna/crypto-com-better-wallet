@@ -1,0 +1,10 @@
+{
+  "tokenPrice": {
+    "message": "Token price",
+    "description": "Column name"
+  },
+  "value": {
+    "message": "Value",
+    "description": "Column name"
+  }
+}

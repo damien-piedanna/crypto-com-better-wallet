@@ -1,0 +1,17 @@
+{
+  "name": "Crypto.com - Better wallet",
+  "description": "Unnoficial simple extension used to view the fiat value of your cryptos in different currency in crypto.com exchange wallet.",
+  "version": "1.0",
+  "icons": {
+    "128": "data/img/icon128.png"
+  },
+  "default_locale": "en",
+  "content_scripts":[{
+    "matches" : ["https://crypto.com/exchange/*"],
+    "js" : ["data/js/better-wallet.js"]
+    }],
+    "permissions": [
+      "storage"
+    ],
+    "manifest_version": 2
+  }
