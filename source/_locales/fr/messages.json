@@ -1,10 +1,10 @@
 {
   "tokenPrice": {
     "message": "Prix token",
-    "description": "Column name"
+    "description": "Nom de la colonne"
   },
   "value": {
     "message": "Valeur",
-    "description": "Column name"
+    "description": "Nom de la colonne"
   }
 }
