@@ -45,7 +45,7 @@
   function init() {
     setInterval(function() {
       //if table not loaded
-      if (document.querySelectorAll('table.e-table__body > tbody > tr') && document.querySelector('.newSpotWallet') && document.querySelector('.v-btc').innerHTML != "-- BTC") {
+      if (document.querySelectorAll('table.e-table__body > tbody > tr') && document.querySelector('a[href="/exchange/wallets/spot"].router-link-active') && document.querySelector('.v-btc').innerHTML != "-- BTC") {
         if (!tableLoaded) {
           tableLoaded = true;
           updateTable();
@@ -98,7 +98,6 @@
       let btcValue = parseFloat(column.firstChild.innerHTML);
       let nbUnit = parseFloat(rows[i].childNodes[1].firstChild.innerHTML);
       let amount = btcToCurrency(btcValue / nbUnit);
-      console.log(btcValue / nbUnit);
       let tokenPriceCell = strToDom('<div class="cell token-price">' + amount + '</div>');
       column.appendChild(tokenPriceCell);
 

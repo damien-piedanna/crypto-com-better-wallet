@@ -1,4 +1,8 @@
 {
+  "description": {
+    "message": "Unnoficial simple extension used to view the fiat value of your cryptos in different currency in crypto.com exchange wallet.",
+    "description": "Extension description"
+  },
   "tokenPrice": {
     "message": "Token price",
     "description": "Column name"

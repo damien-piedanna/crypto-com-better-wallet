@@ -1,4 +1,8 @@
 {
+  "description": {
+    "message": "Améliore l'affichage du portefeuille crypto.com.",
+    "description": "DescriptionExtension de l'extension"
+  },
   "tokenPrice": {
     "message": "Prix token",
     "description": "Nom de la colonne"
