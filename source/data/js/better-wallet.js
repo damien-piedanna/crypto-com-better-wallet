@@ -1,8 +1,7 @@
 (function() {
   "use strict";
-  let bitcoinprice;
+  let bitcoinPrice;
   let currency;
-  let culture;
   let tableLoaded = false;
 
   //Init currency
@@ -25,8 +24,8 @@
     let r = new XMLHttpRequest();
     r.open("GET", "https://blockchain.info/ticker", true);
     r.onreadystatechange = function (data) {
-    	if (r.readyState != 4 || r.status != 200) return;
-      bitcoinprice = JSON.parse(r.response);
+      if (r.readyState !== 4 || r.status !== 200) return;
+      bitcoinPrice = JSON.parse(r.response);
       init();
     };
     r.send();
@@ -36,7 +35,7 @@
   * Bitcoin to currency value
   */
   function btcToCurrency(btc) {
-    return currency == "BTC" ? parseFloat(btc).toFixed(8) : new Intl.NumberFormat(chrome.i18n.getUILanguage(), {style: 'currency', currency: currency}).format(btc * bitcoinprice[currency]['last']).toString().replace(/[a-zA-Z]/g,'');
+    return currency === "BTC" ? parseFloat(btc).toFixed(8) : new Intl.NumberFormat(chrome.i18n.getUILanguage(), {style: 'currency', currency: currency}).format(btc * bitcoinPrice[currency]['last']).toString().replace(/[a-zA-Z]/g,'');
   }
 
   /**
@@ -45,7 +44,7 @@
   function init() {
     setInterval(function() {
       //if table not loaded
-      if (document.querySelectorAll('table.e-table__body > tbody > tr') && document.querySelector('a[href="/exchange/wallets/spot"].router-link-active') && document.querySelector('.v-btc').innerHTML != "-- BTC") {
+      if (document.querySelectorAll('table.e-table__body > tbody > tr') && document.querySelector('a[href="/exchange/wallets/spot"].router-link-active') && document.querySelector('.value-primary').innerHTML !== "-- BTC") {
         if (!tableLoaded) {
           tableLoaded = true;
           updateTable();
@@ -68,7 +67,7 @@
       translateToCurrency();
     }
     select.value = currency;
-    document.querySelector('.v-usd').appendChild(select);
+    document.querySelector('.value-secondary').appendChild(select);
 
     //Display column name
     document.querySelector('th:nth-child(5) > .cell > .sortable').firstChild.nodeValue = chrome.i18n.getMessage("tokenPrice");
@@ -87,11 +86,11 @@
     let rows = document.querySelectorAll('table.e-table__body > tbody > tr');
 
     //update currency total value
-    document.querySelector('.v-usd').firstChild.nodeValue = btcToCurrency(document.querySelector('.v-btc').textContent.slice(0, -4));
+    document.querySelector('.value-secondary').firstChild.nodeValue = btcToCurrency(document.querySelector('.value-primary').textContent.slice(0, -4));
 
     //update currency table
     document.querySelectorAll('.token-price').forEach(e => e.remove());
-    for (var i = 0, len = rows.length; i < len; i++) {
+    for (let i = 0, len = rows.length; i < len; i++) {
       //Unit price
       let column = rows[i].childNodes[4];
       column.firstChild.style.display = 'none';
@@ -103,6 +102,6 @@
 
       //Value
       rows[i].childNodes[5].firstChild.innerHTML = btcToCurrency(rows[i].childNodes[4].firstChild.innerHTML);
-    };
+    }
   }
 })();
